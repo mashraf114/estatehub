@@ -1,5 +1,5 @@
 from pathlib import Path
-
+from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m-ashraf-super-secret-key-114' 
 DATABASES = {
@@ -33,6 +33,13 @@ REST_FRAMEWORK = {
  "DEFAULT_AUTHENTICATION_CLASSES": (
    "rest_framework_simplejwt.authentication.JWTAuthentication",
  )
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), # المفتاح شغال ساعة
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),   # التجديد شغال يوم
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
